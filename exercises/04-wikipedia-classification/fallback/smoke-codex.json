@@ -1,0 +1,27 @@
+{
+  "notice": "Three-page live classroom runner smoke test, 2 October 2026. Model decisions, not human labels.",
+  "settings": {
+    "client": "codex",
+    "model": "gpt-5.6-luna",
+    "effort": "low",
+    "batch_size": 3,
+    "prompt_sha256": "b566a8d76c449924dd465320f9fc5cff45bdb7d2a364a3eb768a0bfe3e4963fc"
+  },
+  "pages": [
+    {
+      "page_id": 1594796,
+      "sample_order": 1,
+      "model_label": "N"
+    },
+    {
+      "page_id": 20190754,
+      "sample_order": 2,
+      "model_label": "U"
+    },
+    {
+      "page_id": 55521524,
+      "sample_order": 3,
+      "model_label": "L"
+    }
+  ]
+}

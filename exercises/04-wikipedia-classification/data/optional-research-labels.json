@@ -1,0 +1,367 @@
+{
+  "notice": "Previous V12 model decisions, not human ground truth. Open after independent judgements.",
+  "model": "gpt-5.6-luna",
+  "reasoning": "high",
+  "labels": [
+    {
+      "page_id": 1594796,
+      "research_label": "L"
+    },
+    {
+      "page_id": 20190754,
+      "research_label": "U"
+    },
+    {
+      "page_id": 55521524,
+      "research_label": "L"
+    },
+    {
+      "page_id": 1783315,
+      "research_label": "L"
+    },
+    {
+      "page_id": 13903982,
+      "research_label": "L"
+    },
+    {
+      "page_id": 12352234,
+      "research_label": "L"
+    },
+    {
+      "page_id": 3795398,
+      "research_label": "L"
+    },
+    {
+      "page_id": 1204609,
+      "research_label": "N"
+    },
+    {
+      "page_id": 39311321,
+      "research_label": "U"
+    },
+    {
+      "page_id": 62708303,
+      "research_label": "L"
+    },
+    {
+      "page_id": 13441945,
+      "research_label": "L"
+    },
+    {
+      "page_id": 48540155,
+      "research_label": "U"
+    },
+    {
+      "page_id": 65194728,
+      "research_label": "U"
+    },
+    {
+      "page_id": 10552354,
+      "research_label": "U"
+    },
+    {
+      "page_id": 39561291,
+      "research_label": "U"
+    },
+    {
+      "page_id": 22598944,
+      "research_label": "U"
+    },
+    {
+      "page_id": 35737744,
+      "research_label": "L"
+    },
+    {
+      "page_id": 23981872,
+      "research_label": "U"
+    },
+    {
+      "page_id": 66180152,
+      "research_label": "U"
+    },
+    {
+      "page_id": 39951210,
+      "research_label": "N"
+    },
+    {
+      "page_id": 58862,
+      "research_label": "L"
+    },
+    {
+      "page_id": 2098352,
+      "research_label": "N"
+    },
+    {
+      "page_id": 32504551,
+      "research_label": "N"
+    },
+    {
+      "page_id": 63324504,
+      "research_label": "N"
+    },
+    {
+      "page_id": 8642531,
+      "research_label": "L"
+    },
+    {
+      "page_id": 37314,
+      "research_label": "N"
+    },
+    {
+      "page_id": 60110175,
+      "research_label": "U"
+    },
+    {
+      "page_id": 47623288,
+      "research_label": "L"
+    },
+    {
+      "page_id": 62397916,
+      "research_label": "N"
+    },
+    {
+      "page_id": 43035219,
+      "research_label": "U"
+    },
+    {
+      "page_id": 65598463,
+      "research_label": "N"
+    },
+    {
+      "page_id": 45290001,
+      "research_label": "N"
+    },
+    {
+      "page_id": 64497915,
+      "research_label": "N"
+    },
+    {
+      "page_id": 13976132,
+      "research_label": "N"
+    },
+    {
+      "page_id": 1858023,
+      "research_label": "L"
+    },
+    {
+      "page_id": 23245705,
+      "research_label": "L"
+    },
+    {
+      "page_id": 26829988,
+      "research_label": "N"
+    },
+    {
+      "page_id": 55797400,
+      "research_label": "U"
+    },
+    {
+      "page_id": 37671514,
+      "research_label": "L"
+    },
+    {
+      "page_id": 59989371,
+      "research_label": "U"
+    },
+    {
+      "page_id": 2426980,
+      "research_label": "N"
+    },
+    {
+      "page_id": 67169702,
+      "research_label": "N"
+    },
+    {
+      "page_id": 24928573,
+      "research_label": "N"
+    },
+    {
+      "page_id": 11519537,
+      "research_label": "L"
+    },
+    {
+      "page_id": 75639463,
+      "research_label": "U"
+    },
+    {
+      "page_id": 55180812,
+      "research_label": "N"
+    },
+    {
+      "page_id": 25203713,
+      "research_label": "U"
+    },
+    {
+      "page_id": 8739347,
+      "research_label": "U"
+    },
+    {
+      "page_id": 51797703,
+      "research_label": "U"
+    },
+    {
+      "page_id": 5254258,
+      "research_label": "U"
+    },
+    {
+      "page_id": 20156881,
+      "research_label": "L"
+    },
+    {
+      "page_id": 2583245,
+      "research_label": "U"
+    },
+    {
+      "page_id": 80334186,
+      "research_label": "U"
+    },
+    {
+      "page_id": 39458839,
+      "research_label": "U"
+    },
+    {
+      "page_id": 19520370,
+      "research_label": "N"
+    },
+    {
+      "page_id": 6039880,
+      "research_label": "L"
+    },
+    {
+      "page_id": 7937842,
+      "research_label": "N"
+    },
+    {
+      "page_id": 40022976,
+      "research_label": "L"
+    },
+    {
+      "page_id": 23289851,
+      "research_label": "N"
+    },
+    {
+      "page_id": 38163920,
+      "research_label": "U"
+    },
+    {
+      "page_id": 825775,
+      "research_label": "L"
+    },
+    {
+      "page_id": 639170,
+      "research_label": "L"
+    },
+    {
+      "page_id": 56296196,
+      "research_label": "U"
+    },
+    {
+      "page_id": 19746337,
+      "research_label": "L"
+    },
+    {
+      "page_id": 65205716,
+      "research_label": "N"
+    },
+    {
+      "page_id": 75109790,
+      "research_label": "L"
+    },
+    {
+      "page_id": 53111941,
+      "research_label": "U"
+    },
+    {
+      "page_id": 43375214,
+      "research_label": "N"
+    },
+    {
+      "page_id": 27660529,
+      "research_label": "L"
+    },
+    {
+      "page_id": 6226425,
+      "research_label": "L"
+    },
+    {
+      "page_id": 2652103,
+      "research_label": "L"
+    },
+    {
+      "page_id": 30863182,
+      "research_label": "U"
+    },
+    {
+      "page_id": 129332,
+      "research_label": "L"
+    },
+    {
+      "page_id": 70334254,
+      "research_label": "U"
+    },
+    {
+      "page_id": 59152524,
+      "research_label": "N"
+    },
+    {
+      "page_id": 6799149,
+      "research_label": "U"
+    },
+    {
+      "page_id": 76419344,
+      "research_label": "N"
+    },
+    {
+      "page_id": 24668168,
+      "research_label": "N"
+    },
+    {
+      "page_id": 63403920,
+      "research_label": "N"
+    },
+    {
+      "page_id": 854413,
+      "research_label": "N"
+    },
+    {
+      "page_id": 33259946,
+      "research_label": "N"
+    },
+    {
+      "page_id": 2318360,
+      "research_label": "L"
+    },
+    {
+      "page_id": 78630383,
+      "research_label": "U"
+    },
+    {
+      "page_id": 24658004,
+      "research_label": "N"
+    },
+    {
+      "page_id": 10687,
+      "research_label": "L"
+    },
+    {
+      "page_id": 61345524,
+      "research_label": "N"
+    },
+    {
+      "page_id": 80473790,
+      "research_label": "U"
+    },
+    {
+      "page_id": 20678613,
+      "research_label": "L"
+    },
+    {
+      "page_id": 69809809,
+      "research_label": "N"
+    },
+    {
+      "page_id": 30953319,
+      "research_label": "U"
+    }
+  ]
+}

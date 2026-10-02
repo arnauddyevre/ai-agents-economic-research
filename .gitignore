@@ -1,0 +1,15 @@
+# Student inputs and outputs stay local, including permanent document archives.
+/document_dump/*
+!/document_dump/README.md
+/outputs/*
+!/outputs/README.md
+
+# Machine-local files and credentials.
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.claude/settings.local.json

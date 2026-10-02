@@ -1,0 +1,19 @@
+FICTIONAL CLASSROOM EXPORT — no real account or email connection
+Thread: Methods reading group
+
+Message ID: demo-001
+From: Reading group organiser <organiser@example.invalid>
+To: Research group <group@example.invalid>
+Date: 2026-10-01 09:00 Europe/London
+Subject: Methods reading group — Friday
+We propose Friday 2 October at 14:00 in Room A. Please read the abstract and
+introduction of the paper before the meeting. Please reply by 17:00 Thursday.
+
+Message ID: demo-002
+From: Reading group organiser <organiser@example.invalid>
+To: Research group <group@example.invalid>
+Date: 2026-10-01 11:30 Europe/London
+Subject: Re: Methods reading group — Friday
+Update: the meeting will start at 14:30 in Room B because Room A is unavailable.
+The date, preparation and reply deadline remain as in my earlier message.
+The room is reserved for one hour; we have not agreed an end time.

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wikipedia review — judge, then reveal</title>
+<style>
+:root{--ink:#283845;--muted:#586771;--line:#d7dee2;--accent:#832b06;--paper:#fefdFA}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,sans-serif}
+main{max-width:1050px;margin:auto;padding:28px 24px 60px}h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:35px;margin:0 0 8px}h2{font-size:32px;margin:6px 0 18px}
+p{margin:10px 0}.muted{color:var(--muted);font-size:14px}.toolbar,.navigation,.choices,.save-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:16px 0}
+button,select{font:inherit;color:var(--ink);background:white;border:1px solid var(--line);border-radius:8px;padding:9px 15px;cursor:pointer}button:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+button.primary{background:var(--ink);color:white}.choices button{min-width:130px;padding:16px 24px;font-size:23px;font-weight:650}.choices button[data-label=L]{background:#edf5ef}.choices button[data-label=U]{background:#fff5dc}.choices button[data-label=N]{background:#edf1f4}.choices button[aria-pressed=true]{outline:3px solid var(--accent);outline-offset:2px}
+.card{padding:26px;border:1px solid var(--line);border-radius:16px;background:white;box-shadow:0 8px 24px #202c3909}.evidence{white-space:pre-wrap;max-height:42vh;overflow:auto;padding:4px 8px 12px 0}.badge{border-radius:20px;background:#edf1f4;padding:5px 12px;font-size:14px}progress{width:100%;height:10px;accent-color:var(--accent)}
+textarea{display:block;width:100%;min-height:85px;border:1px solid var(--line);border-radius:8px;padding:12px;font:inherit;resize:vertical}label{font-size:15px}.comparison{padding:16px;background:#f4f6f7;border-radius:10px;margin-top:18px}.comparison strong{color:var(--accent)}[hidden]{display:none!important}.storage{font-size:14px;color:var(--muted)}
+@media(max-width:600px){main{padding:20px 14px}.card{padding:18px}.choices button{min-width:85px;padding:13px}h1{font-size:28px}h2{font-size:26px}}
+</style>
+</head>
+<body><main>
+<h1>Your judgement first</h1>
+<p>Read the supplied evidence, choose L / U / N, then save to reveal the model’s decision.</p>
+<p class="muted" id="notice"></p>
+<div class="toolbar">
+<label>Show <select id="filter"><option value="all">All pages</option><option value="unreviewed">Unreviewed</option><option value="reviewed">Reviewed</option></select></label>
+<label id="model-filter-label" hidden>Model label <select id="model-filter"><option value="all">All</option><option>L</option><option>U</option><option>N</option></select></label>
+<button id="backup">Save JSON backup</button><button id="restore">Load JSON backup</button><input id="backup-file" type="file" accept=".json,application/json" hidden>
+<button id="csv">Export CSV</button>
+</div>
+<div class="navigation"><button id="previous">← Previous</button><span id="position" class="badge"></span><button id="next">Next / skip →</button><span id="progress-text" class="muted"></span></div>
+<progress id="progress" value="0" max="90" aria-label="Independent judgements saved"></progress>
+<p id="storage" class="storage" role="status" aria-live="polite"></p>
+<section class="card" id="card">
+<p id="page-id" class="muted"></p><h2 id="title"></h2><div id="introduction" class="evidence"></div>
+<div class="choices" role="group" aria-label="Your label"><button data-label="L" aria-pressed="false">L · likely</button><button data-label="U" aria-pressed="false">U · uncertain</button><button data-label="N" aria-pressed="false">N · not likely</button></div>
+<label for="comment">Your comment</label><textarea id="comment" placeholder="What in the supplied evidence matters?" maxlength="20000"></textarea>
+<div class="save-row"><button class="primary" id="save" disabled>Save judgement and reveal</button><span class="muted" id="first-label"></span></div>
+<div class="comparison" id="comparison" hidden></div>
+</section>
+<p id="empty" hidden>No pages match this filter. Choose “All pages” to continue.</p>
+<p id="agreement" class="muted" hidden></p>
+<p class="muted">L: evidence supports eligibility. U: eligibility remains unresolved. N: evidence establishes exclusion.</p>
+<p class="muted">Use the frozen introduction, without browsing for more evidence. The model label and your first label remain unchanged when you save a revision. Unanswered model labels stay out of the CSV. Save a JSON backup before closing or moving this file; browser storage can be cleared.</p>
+<p class="muted">This is an offline teaching tool, with labels hidden by the interface. Labels are present in its source; it is not an assessment security mechanism. Evidence: Wikipedia contributors, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>; article attribution is retained in each exported source URL.</p>
+</main>
+<script>
+'use strict';
+const data = __REVIEW_DATA__;
+const $=id=>document.getElementById(id), valid=x=>['L','U','N'].includes(x);
+const key='workshop-review-v1:'+data.dataset_id;
+let reviews={},current=0,selected=null,storageMessage='Progress saves in this browser. Use a JSON backup to keep a portable copy.';
+try{const raw=localStorage.getItem(key);if(raw)reviews=validateBackup(JSON.parse(raw)).reviews;}catch(e){storageMessage='Browser storage unavailable or unreadable. Save a JSON backup to keep your progress.';}
+$('notice').textContent=data.notice;
+function validateBackup(value){
+ if(value.dataset_id!==data.dataset_id||!value.reviews||typeof value.reviews!=='object'||Array.isArray(value.reviews))throw Error('This backup belongs to different inputs or results.');
+ const ids=new Set(data.pages.map(p=>String(p.page_id)));
+ for(const [id,r] of Object.entries(value.reviews)){
+  if(!ids.has(id)||!r||typeof r!=='object'||(r.first_label!=null&&!valid(r.first_label))||(r.reviewed_label!=null&&!valid(r.reviewed_label))||(r.draft_label!=null&&!valid(r.draft_label))||typeof r.comment!=='string'||r.comment.length>20000||(r.first_label==null&&r.reviewed_label!=null))throw Error('Invalid review record.');
+ }
+ return value;
+}
+function persist(){try{localStorage.setItem(key,JSON.stringify({dataset_id:data.dataset_id,reviews}));}catch(e){storageMessage='Browser storage unavailable. Save a JSON backup before closing.';}$('storage').textContent=storageMessage;}
+function state(){const p=data.pages[current];if(!p)return null;return reviews[p.page_id]||(reviews[p.page_id]={comment:'',first_label:null,reviewed_label:null,draft_label:null});}
+function done(){return data.pages.filter(p=>reviews[p.page_id]?.first_label).length;}
+function indices(){return data.pages.map((p,i)=>i).filter(i=>{const p=data.pages[i],r=reviews[p.page_id],f=$('filter').value,m=$('model-filter').value;return(f==='all'||(f==='reviewed'?!!r?.first_label:!r?.first_label))&&(done()<data.pages.length||m==='all'||p.model_label===m);});}
+function render(){
+ const count=done(),complete=count===data.pages.length,list=indices();
+ $('model-filter-label').hidden=!complete;$('agreement').hidden=!complete;
+ $('progress').max=data.pages.length;$('progress').value=count;$('progress-text').textContent=count+' / '+data.pages.length+' first judgements saved';$('storage').textContent=storageMessage;
+ if(complete){const agree=data.pages.filter(p=>reviews[p.page_id].first_label===p.model_label).length;$('agreement').textContent='Initial agreement: '+agree+' / '+data.pages.length+'. Agreement measures consistency with this model, not correctness.';}
+ if(!list.includes(current))current=list[0]??-1;
+ $('card').hidden=current<0;$('empty').hidden=current>=0;
+ $('previous').disabled=current<0||list.indexOf(current)<=0;$('next').disabled=current<0||list.indexOf(current)>=list.length-1;
+ if(current<0){$('position').textContent='No matching pages';return;}
+ const p=data.pages[current],r=state();selected=r.draft_label||r.reviewed_label||r.first_label;
+ $('position').textContent='Page '+(current+1)+' / '+data.pages.length;
+ $('page-id').textContent='Page ID '+p.page_id+' · supplied snapshot '+p.wikipedia_snapshot;
+ $('title').textContent=p.title;$('introduction').textContent=p.introduction;$('comment').value=r.comment;
+ $('first-label').textContent=r.first_label?'First independent label: '+r.first_label:'';
+ $('comparison').hidden=!r.first_label;
+ $('comparison').textContent=r.first_label?'Model: '+p.model_label+' · Your first label: '+r.first_label+' · Your reviewed label: '+r.reviewed_label:'';
+ $('save').textContent=r.first_label?'Save revised judgement':'Save judgement and reveal';updateChoice();
+}
+function updateChoice(){document.querySelectorAll('[data-label]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.label===selected)));$('save').disabled=!valid(selected);}
+document.querySelectorAll('[data-label]').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.label;state().draft_label=selected;persist();updateChoice();}));
+$('comment').addEventListener('input',()=>{state().comment=$('comment').value;persist();});
+$('save').addEventListener('click',()=>{const r=state();if(!r.first_label){r.first_label=selected;r.first_comment=r.comment;r.first_saved_at=new Date().toISOString();}r.reviewed_label=selected;r.draft_label=null;r.last_saved_at=new Date().toISOString();if($('filter').value==='unreviewed')$('filter').value='all';persist();render();});
+for(const [id,delta] of [['previous',-1],['next',1]])$(id).addEventListener('click',()=>{const list=indices(),i=list.indexOf(current)+delta;if(i>=0&&i<list.length){current=list[i];render();}});
+for(const id of ['filter','model-filter'])$(id).addEventListener('change',render);
+function download(name,body,type){const url=URL.createObjectURL(new Blob([body],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('backup').addEventListener('click',()=>download('review-backup.json',JSON.stringify({dataset_id:data.dataset_id,reviews},null,2),'application/json'));
+$('restore').addEventListener('click',()=>$('backup-file').click());
+$('backup-file').addEventListener('change',async event=>{const file=event.target.files[0];if(!file)return;try{const value=validateBackup(JSON.parse(await file.text()));if(Object.keys(reviews).length&&!confirm('Replace current browser progress with this backup?'))return;reviews=value.reviews;persist();render();}catch(e){alert('Could not load backup: '+e.message);}finally{event.target.value='';}});
+function cell(value){let s=String(value??'');if(/^\s*[=+\-@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"';}
+function csvText(){const fields=['page_id','title','wikipedia_url','model_label','first_human_label','reviewed_human_label','comment','first_comment'];const rows=data.pages.map(p=>{const r=reviews[p.page_id]||{};return [p.page_id,p.title,p.wikipedia_url,r.first_label?p.model_label:'',r.first_label||'',r.reviewed_label||'',r.comment||'',r.first_comment||''];});return [fields,...rows].map(row=>row.map(cell).join(',')).join('\r\n');}
+$('csv').addEventListener('click',()=>download('review.csv',csvText(),'text/csv;charset=utf-8'));
+render();
+</script></body></html>

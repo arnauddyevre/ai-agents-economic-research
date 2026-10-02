@@ -1,0 +1,1 @@
+{"additionalProperties": false, "properties": {"labels": {"items": {"enum": ["L", "U", "N"], "type": "string"}, "type": "array"}}, "required": ["labels"], "type": "object"}

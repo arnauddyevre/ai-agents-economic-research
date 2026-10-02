@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A small economic research deck</title>
+  <!-- Maths: KaTeX from a CDN (needs internet the first time the page renders equations).
+       Delete these three tags if the deck has no mathematics. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* Colour tokens: replace with the deck's own colours (see CONVERSION.md, "Colours"). */
+    :root {
+      --ink: #283845;          /* body text and titles */
+      --muted: #586771;        /* notes, captions, references */
+      --accent: #832b06;       /* \alert, key phrases, bullets */
+      --line: #d7dee2;         /* rules and borders */
+      --paper: #ffffff;        /* page background */
+      --divider-bg: #202c39;   /* section divider slides */
+      --divider-ink: #ffffff;
+      --ribbon-height: 64px;
+      --contents-width: 220px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.1875rem; line-height: 1.6;
+    }
+    a { color: inherit; text-underline-offset: .2em; }
+    button { font: inherit; }
+
+    /* Top ribbon: deck title, reading progress, previous/next. */
+    .ribbon { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--line); }
+    .ribbon-inner { display: flex; align-items: center; gap: 1.5rem; max-width: 1320px; min-height: var(--ribbon-height); margin: auto; padding: .6rem 2rem; }
+    .deck-title { margin-right: auto; font-size: .9375rem; font-weight: 650; text-decoration: none; }
+    progress { width: 100px; height: 3px; border: 0; background: var(--line); appearance: none; -webkit-appearance: none; }
+    progress::-webkit-progress-bar { background: var(--line); }
+    progress::-webkit-progress-value { background: var(--accent); }
+    progress::-moz-progress-bar { background: var(--accent); }
+    .ribbon button { min-height: 38px; padding: .35rem .75rem; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); font-size: .875rem; cursor: pointer; }
+    .ribbon button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .ribbon button:disabled { opacity: .45; cursor: default; }
+
+    /* Layout: slides in the centre, section menu fixed on the far right. */
+    .page { padding: 0 calc(var(--contents-width) + 3rem) 0 clamp(1.25rem, 3vw, 3rem); }
+    main { max-width: 1100px; margin: 0 auto; }
+    .contents { position: fixed; top: calc(var(--ribbon-height) + 2.5rem); right: 1rem; width: var(--contents-width); max-height: calc(100vh - var(--ribbon-height) - 4rem); overflow-y: auto; font-size: .9375rem; line-height: 1.45; }
+    .contents-title { margin: 0 0 1rem; color: var(--muted); font-size: .8125rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+    .contents ol { margin: 0; padding: 0; list-style: none; }
+    .contents details > summary, .contents > ol > li > a { display: block; padding: .45rem 0 .45rem 1rem; border-left: 2px solid var(--line); color: var(--muted); text-decoration: none; cursor: pointer; list-style: none; }
+    .contents details > summary::-webkit-details-marker { display: none; }
+    .contents details[data-current="true"] > summary, .contents a[aria-current="location"] { border-left-color: var(--accent); color: var(--accent); font-weight: 600; }
+    .contents details ol a { display: block; padding: .3rem .5rem .3rem 1.6rem; color: var(--muted); font-size: .875rem; text-decoration: none; }
+    .contents a:hover, .contents summary:hover { color: var(--accent); }
+
+    /* Slides. Each <section> in <main> is one slide. */
+    .slide { display: flex; flex-direction: column; min-height: calc(100svh - var(--ribbon-height)); padding: 3.5rem 0 3rem; border-bottom: 1px solid var(--line); scroll-margin-top: var(--ribbon-height); }
+    h1, h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.03em; }
+    h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1.08; }
+    h2 { font-size: clamp(2.1rem, 3.5vw, 3.2rem); line-height: 1.15; }
+    h3 { margin: 1.4rem 0 .4rem; font-size: 1.15rem; }
+    .slide > h2 + * { margin-top: 1.5rem; }
+    .title-slide { justify-content: center; }
+    .title-slide .subtitle { margin: 1.2rem 0 0; color: var(--accent); font-size: clamp(1.4rem, 2.5vw, 2rem); }
+    .title-slide .byline { margin: 3rem 0 0; font-size: 1.5rem; }
+    .title-slide .byline .institute { color: var(--accent); font-style: italic; }
+    .title-slide .date { margin: .4rem 0 0; color: var(--muted); font-size: 1.25rem; }
+    .section-divider { justify-content: center; padding-inline: clamp(1.5rem, 5vw, 4rem); background: var(--divider-bg); color: var(--divider-ink); border-bottom: 0; }
+    .section-divider ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 1.1rem; }
+    .section-divider li { font-family: Georgia, serif; font-size: clamp(1.1rem, 1.8vw, 1.45rem); color: color-mix(in srgb, var(--divider-ink) 55%, transparent); }
+    .section-divider li a { text-decoration: none; }
+    .section-divider li.is-current h2 { color: var(--divider-ink); }
+    ul, ol { padding-left: 1.3rem; }
+    li { margin-top: .35rem; }
+    li::marker { color: var(--accent); }
+    li > ul, li > ol { font-size: .9em; }
+    .alert, strong.alert { color: var(--accent); font-weight: 650; }
+    .muted, .small-note { color: var(--muted); }
+    .small-note { font-size: .875rem; }
+    .columns { display: grid; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: 2rem; align-items: start; }
+    .block { margin: 1rem 0; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 4px; }
+    .block.alert-block { border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: color-mix(in srgb, var(--accent) 7%, transparent); }
+    .block-title { margin: 0 0 .3rem; font-weight: 650; color: var(--accent); }
+    figure { margin: 1.2rem 0 0; }
+    figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+    figcaption { margin-top: .5rem; color: var(--muted); font-size: .9375rem; text-align: center; }
+    table.slide-table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+    .slide-table th, .slide-table td { padding: .5rem .6rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .slide-table thead th { color: var(--muted); font-size: .875rem; }
+    .slide-table .c { text-align: center; }
+    .slide-table .r { text-align: right; }
+    .slide-table .num { font-variant-numeric: tabular-nums; }
+    .katex-display { overflow-x: auto; overflow-y: hidden; padding: .2rem 0; }
+    details.notes { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: .6rem; }
+    details.notes summary { color: var(--accent); font-size: .95rem; font-weight: 600; cursor: pointer; }
+    .slide-references { margin-top: auto; padding-top: 1.2rem; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+    .slide-references p { margin: .25rem 0 0; }
+    .slide-counter { position: fixed; right: 1rem; bottom: .75rem; color: var(--muted); font-size: .8125rem; background: rgb(255 255 255 / 85%); }
+
+    @media (max-width: 900px) {
+      .page { padding: 0 1.25rem; }
+      .contents { display: none; }
+      .columns { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .ribbon, .contents, .slide-counter { display: none; }
+      .page { padding: 0; }
+      .slide { min-height: 0; break-after: page; }
+      .section-divider { background: none; color: var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <header class="ribbon">
+    <div class="ribbon-inner">
+      <a class="deck-title" href="#title">A small economic research deck</a>
+      <progress id="progress" max="100" value="0" aria-label="Reading position"></progress>
+      <button id="previous" type="button" aria-label="Previous slide">← Previous</button>
+      <button id="next" type="button" aria-label="Next slide">Next →</button>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav class="contents" aria-label="Sections">
+      <p class="contents-title">Sections</p>
+      <ol>
+        <li><details><summary>1 · Model and evidence</summary><ol><li><a href="#model-and-evidence">Section divider</a></li><li><a href="#production-function">A production function</a></li><li><a href="#illustrative-output">Illustrative output</a></li></ol></details></li><li><details><summary>2 · Human review</summary><ol><li><a href="#human-review">Section divider</a></li><li><a href="#check-conversion">Check the conversion</a></li><li><a href="#references">References</a></li></ol></details></li>
+      </ol>
+    </nav>
+
+    <main>
+      <section class="slide title-slide" id="title"><h1>A small economic research deck</h1><p class="subtitle">An example to convert and check</p><p class="date">2 October 2026</p></section><section class="slide section-divider" id="model-and-evidence"><ol><li class="is-current"><h2>Model and evidence</h2></li><li><a href="#human-review">Human review</a></li></ol></section><section class="slide" id="production-function"><h2>A production function</h2><p>Output depends on capital and labour:</p>
+<p>\[ \econOutput = A K^{\alpha} L^{1-\alpha} \tag{1} \]</p>
+<ul><li>For this example, \( A=1 \) and \( \alpha=0.3 \).</li><li>Equation (1) is an illustration, not an estimated relationship.</li></ul>
+<table class="slide-table"><thead><tr><th>Scenario</th><th class="r">Capital \( K \)</th><th class="r">Labour \( L \)</th></tr></thead><tbody><tr><td>Baseline</td><td class="r num">100</td><td class="r num">50</td></tr><tr><td>Alternative</td><td class="r num">120</td><td class="r num">50</td></tr></tbody></table></section><section class="slide" id="illustrative-output"><h2>Illustrative output</h2><figure><img src="assets/output.png" style="width:68%" alt="Invented output values: baseline 61.56, alternative 65.02"></figure><p class="small-note">Source: invented teaching values; no empirical claim. See Workshop example [2026].</p><footer class="slide-references"><strong>References</strong><p>Workshop example. Illustrative teaching data, 2026. Invented values for a conversion exercise; not empirical evidence.</p></footer></section><section class="slide section-divider" id="human-review"><ol><li><a href="#model-and-evidence">Model and evidence</a></li><li class="is-current"><h2>Human review</h2></li></ol></section><section class="slide" id="check-conversion"><h2>Check the conversion</h2><figure><img src="assets/review.svg" alt="Source PDF leads to HTML page, then to your judgement"></figure><ul><li>Compare maths, figures, tables and slide order.</li><li>Change one conversion rule; rerun and check again.</li></ul><details class="notes"><summary>Speaker notes</summary><p>The diagram can be rendered from the PDF if it cannot be converted directly.</p></details></section><section class="slide" id="references"><h2>References</h2><ul><li>Workshop example. Illustrative teaching data, 2026. Invented values for a conversion exercise; not empirical evidence.</li></ul></section>
+    </main>
+  </div>
+  <p class="slide-counter" id="slide-counter" aria-live="polite"></p>
+
+  <script>
+    (() => {
+      'use strict';
+      const slides = [...document.querySelectorAll('main > section')];
+      const links = [...document.querySelectorAll('.contents a')];
+      const groups = [...document.querySelectorAll('.contents details')];
+      const ribbon = document.querySelector('.ribbon');
+      const progress = document.getElementById('progress');
+      const counter = document.getElementById('slide-counter');
+      const previous = document.getElementById('previous');
+      const next = document.getElementById('next');
+      let active = 0;
+      let scheduled = false;
+
+      function update() {
+        scheduled = false;
+        const top = ribbon.getBoundingClientRect().height + 32;
+        active = 0;
+        slides.forEach((slide, index) => { if (slide.getBoundingClientRect().top <= top) active = index; });
+        const maximum = document.documentElement.scrollHeight - window.innerHeight;
+        if (maximum > 0 && window.scrollY >= maximum - 2) active = slides.length - 1;
+        progress.value = maximum > 0 ? Math.round(100 * window.scrollY / maximum) : 0;
+        counter.textContent = slides.length ? `${active + 1}/${slides.length}` : '';
+        const target = slides.length ? `#${slides[active].id}` : '';
+        links.forEach(link => {
+          if (link.getAttribute('href') === target) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+        groups.forEach(group => {
+          group.dataset.current = String([...group.querySelectorAll('a')].some(link => link.getAttribute('href') === target));
+        });
+        previous.disabled = active === 0;
+        next.disabled = active >= slides.length - 1;
+      }
+      function schedule() {
+        if (!scheduled) { scheduled = true; requestAnimationFrame(update); }
+      }
+      function goTo(index) {
+        const slide = slides[index];
+        if (!slide) return;
+        history.replaceState(null, '', `#${slide.id}`);
+        slide.scrollIntoView({ block: 'start' });
+        schedule();
+      }
+      previous.addEventListener('click', () => goTo(active - 1));
+      next.addEventListener('click', () => goTo(active + 1));
+      document.addEventListener('keydown', event => {
+        if (event.target.closest('input, textarea, select')) return;
+        if (event.key === 'ArrowRight') { goTo(active + 1); event.preventDefault(); }
+        if (event.key === 'ArrowLeft') { goTo(active - 1); event.preventDefault(); }
+      });
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule);
+
+      // Render \( \) and \[ \] maths once KaTeX has loaded.
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.querySelector('main'), {
+            delimiters: [
+              { left: '\\[', right: '\\]', display: true },
+              { left: '\\(', right: '\\)', display: false }
+            ],
+            macros: { "\\econOutput": "Y" },
+            throwOnError: false
+          });
+        }
+        schedule();
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

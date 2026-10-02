@@ -1,0 +1,3 @@
+interface:
+  display_name: "Beamer to HTML"
+  short_description: "Turn a Beamer deck into a local HTML presentation"

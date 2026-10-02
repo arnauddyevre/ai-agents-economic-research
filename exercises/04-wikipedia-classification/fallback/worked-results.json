@@ -1,0 +1,463 @@
+{
+  "run_identity": "8612b239291c6383cb9920bcaa7597e00d2686a628d6f36689008e895e902a3e",
+  "settings": {
+    "client": "worked",
+    "model": null,
+    "effort": null,
+    "batch_size": 3,
+    "prompt_sha256": "b566a8d76c449924dd465320f9fc5cff45bdb7d2a364a3eb768a0bfe3e4963fc"
+  },
+  "notice": "Copied previous research model decisions; no new model call",
+  "pages": [
+    {
+      "page_id": 1594796,
+      "sample_order": 1,
+      "model_label": "L"
+    },
+    {
+      "page_id": 20190754,
+      "sample_order": 2,
+      "model_label": "U"
+    },
+    {
+      "page_id": 55521524,
+      "sample_order": 3,
+      "model_label": "L"
+    },
+    {
+      "page_id": 1783315,
+      "sample_order": 4,
+      "model_label": "L"
+    },
+    {
+      "page_id": 13903982,
+      "sample_order": 5,
+      "model_label": "L"
+    },
+    {
+      "page_id": 12352234,
+      "sample_order": 6,
+      "model_label": "L"
+    },
+    {
+      "page_id": 3795398,
+      "sample_order": 7,
+      "model_label": "L"
+    },
+    {
+      "page_id": 1204609,
+      "sample_order": 8,
+      "model_label": "N"
+    },
+    {
+      "page_id": 39311321,
+      "sample_order": 9,
+      "model_label": "U"
+    },
+    {
+      "page_id": 62708303,
+      "sample_order": 10,
+      "model_label": "L"
+    },
+    {
+      "page_id": 13441945,
+      "sample_order": 11,
+      "model_label": "L"
+    },
+    {
+      "page_id": 48540155,
+      "sample_order": 12,
+      "model_label": "U"
+    },
+    {
+      "page_id": 65194728,
+      "sample_order": 13,
+      "model_label": "U"
+    },
+    {
+      "page_id": 10552354,
+      "sample_order": 14,
+      "model_label": "U"
+    },
+    {
+      "page_id": 39561291,
+      "sample_order": 15,
+      "model_label": "U"
+    },
+    {
+      "page_id": 22598944,
+      "sample_order": 16,
+      "model_label": "U"
+    },
+    {
+      "page_id": 35737744,
+      "sample_order": 17,
+      "model_label": "L"
+    },
+    {
+      "page_id": 23981872,
+      "sample_order": 18,
+      "model_label": "U"
+    },
+    {
+      "page_id": 66180152,
+      "sample_order": 19,
+      "model_label": "U"
+    },
+    {
+      "page_id": 39951210,
+      "sample_order": 20,
+      "model_label": "N"
+    },
+    {
+      "page_id": 58862,
+      "sample_order": 21,
+      "model_label": "L"
+    },
+    {
+      "page_id": 2098352,
+      "sample_order": 22,
+      "model_label": "N"
+    },
+    {
+      "page_id": 32504551,
+      "sample_order": 23,
+      "model_label": "N"
+    },
+    {
+      "page_id": 63324504,
+      "sample_order": 24,
+      "model_label": "N"
+    },
+    {
+      "page_id": 8642531,
+      "sample_order": 25,
+      "model_label": "L"
+    },
+    {
+      "page_id": 37314,
+      "sample_order": 26,
+      "model_label": "N"
+    },
+    {
+      "page_id": 60110175,
+      "sample_order": 27,
+      "model_label": "U"
+    },
+    {
+      "page_id": 47623288,
+      "sample_order": 28,
+      "model_label": "L"
+    },
+    {
+      "page_id": 62397916,
+      "sample_order": 29,
+      "model_label": "N"
+    },
+    {
+      "page_id": 43035219,
+      "sample_order": 30,
+      "model_label": "U"
+    },
+    {
+      "page_id": 65598463,
+      "sample_order": 31,
+      "model_label": "N"
+    },
+    {
+      "page_id": 45290001,
+      "sample_order": 32,
+      "model_label": "N"
+    },
+    {
+      "page_id": 64497915,
+      "sample_order": 33,
+      "model_label": "N"
+    },
+    {
+      "page_id": 13976132,
+      "sample_order": 34,
+      "model_label": "N"
+    },
+    {
+      "page_id": 1858023,
+      "sample_order": 35,
+      "model_label": "L"
+    },
+    {
+      "page_id": 23245705,
+      "sample_order": 36,
+      "model_label": "L"
+    },
+    {
+      "page_id": 26829988,
+      "sample_order": 37,
+      "model_label": "N"
+    },
+    {
+      "page_id": 55797400,
+      "sample_order": 38,
+      "model_label": "U"
+    },
+    {
+      "page_id": 37671514,
+      "sample_order": 39,
+      "model_label": "L"
+    },
+    {
+      "page_id": 59989371,
+      "sample_order": 40,
+      "model_label": "U"
+    },
+    {
+      "page_id": 2426980,
+      "sample_order": 41,
+      "model_label": "N"
+    },
+    {
+      "page_id": 67169702,
+      "sample_order": 42,
+      "model_label": "N"
+    },
+    {
+      "page_id": 24928573,
+      "sample_order": 43,
+      "model_label": "N"
+    },
+    {
+      "page_id": 11519537,
+      "sample_order": 44,
+      "model_label": "L"
+    },
+    {
+      "page_id": 75639463,
+      "sample_order": 45,
+      "model_label": "U"
+    },
+    {
+      "page_id": 55180812,
+      "sample_order": 46,
+      "model_label": "N"
+    },
+    {
+      "page_id": 25203713,
+      "sample_order": 47,
+      "model_label": "U"
+    },
+    {
+      "page_id": 8739347,
+      "sample_order": 48,
+      "model_label": "U"
+    },
+    {
+      "page_id": 51797703,
+      "sample_order": 49,
+      "model_label": "U"
+    },
+    {
+      "page_id": 5254258,
+      "sample_order": 50,
+      "model_label": "U"
+    },
+    {
+      "page_id": 20156881,
+      "sample_order": 51,
+      "model_label": "L"
+    },
+    {
+      "page_id": 2583245,
+      "sample_order": 52,
+      "model_label": "U"
+    },
+    {
+      "page_id": 80334186,
+      "sample_order": 53,
+      "model_label": "U"
+    },
+    {
+      "page_id": 39458839,
+      "sample_order": 54,
+      "model_label": "U"
+    },
+    {
+      "page_id": 19520370,
+      "sample_order": 55,
+      "model_label": "N"
+    },
+    {
+      "page_id": 6039880,
+      "sample_order": 56,
+      "model_label": "L"
+    },
+    {
+      "page_id": 7937842,
+      "sample_order": 57,
+      "model_label": "N"
+    },
+    {
+      "page_id": 40022976,
+      "sample_order": 58,
+      "model_label": "L"
+    },
+    {
+      "page_id": 23289851,
+      "sample_order": 59,
+      "model_label": "N"
+    },
+    {
+      "page_id": 38163920,
+      "sample_order": 60,
+      "model_label": "U"
+    },
+    {
+      "page_id": 825775,
+      "sample_order": 61,
+      "model_label": "L"
+    },
+    {
+      "page_id": 639170,
+      "sample_order": 62,
+      "model_label": "L"
+    },
+    {
+      "page_id": 56296196,
+      "sample_order": 63,
+      "model_label": "U"
+    },
+    {
+      "page_id": 19746337,
+      "sample_order": 64,
+      "model_label": "L"
+    },
+    {
+      "page_id": 65205716,
+      "sample_order": 65,
+      "model_label": "N"
+    },
+    {
+      "page_id": 75109790,
+      "sample_order": 66,
+      "model_label": "L"
+    },
+    {
+      "page_id": 53111941,
+      "sample_order": 67,
+      "model_label": "U"
+    },
+    {
+      "page_id": 43375214,
+      "sample_order": 68,
+      "model_label": "N"
+    },
+    {
+      "page_id": 27660529,
+      "sample_order": 69,
+      "model_label": "L"
+    },
+    {
+      "page_id": 6226425,
+      "sample_order": 70,
+      "model_label": "L"
+    },
+    {
+      "page_id": 2652103,
+      "sample_order": 71,
+      "model_label": "L"
+    },
+    {
+      "page_id": 30863182,
+      "sample_order": 72,
+      "model_label": "U"
+    },
+    {
+      "page_id": 129332,
+      "sample_order": 73,
+      "model_label": "L"
+    },
+    {
+      "page_id": 70334254,
+      "sample_order": 74,
+      "model_label": "U"
+    },
+    {
+      "page_id": 59152524,
+      "sample_order": 75,
+      "model_label": "N"
+    },
+    {
+      "page_id": 6799149,
+      "sample_order": 76,
+      "model_label": "U"
+    },
+    {
+      "page_id": 76419344,
+      "sample_order": 77,
+      "model_label": "N"
+    },
+    {
+      "page_id": 24668168,
+      "sample_order": 78,
+      "model_label": "N"
+    },
+    {
+      "page_id": 63403920,
+      "sample_order": 79,
+      "model_label": "N"
+    },
+    {
+      "page_id": 854413,
+      "sample_order": 80,
+      "model_label": "N"
+    },
+    {
+      "page_id": 33259946,
+      "sample_order": 81,
+      "model_label": "N"
+    },
+    {
+      "page_id": 2318360,
+      "sample_order": 82,
+      "model_label": "L"
+    },
+    {
+      "page_id": 78630383,
+      "sample_order": 83,
+      "model_label": "U"
+    },
+    {
+      "page_id": 24658004,
+      "sample_order": 84,
+      "model_label": "N"
+    },
+    {
+      "page_id": 10687,
+      "sample_order": 85,
+      "model_label": "L"
+    },
+    {
+      "page_id": 61345524,
+      "sample_order": 86,
+      "model_label": "N"
+    },
+    {
+      "page_id": 80473790,
+      "sample_order": 87,
+      "model_label": "U"
+    },
+    {
+      "page_id": 20678613,
+      "sample_order": 88,
+      "model_label": "L"
+    },
+    {
+      "page_id": 69809809,
+      "sample_order": 89,
+      "model_label": "N"
+    },
+    {
+      "page_id": 30953319,
+      "sample_order": 90,
+      "model_label": "U"
+    }
+  ]
+}

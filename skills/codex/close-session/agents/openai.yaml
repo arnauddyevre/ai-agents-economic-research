@@ -1,0 +1,6 @@
+interface:
+  display_name: "Close Session"
+  short_description: "Update shared context and commit locally"
+  default_prompt: "Use $close-session to add this session's entry to the project history, refresh any context it made stale, then commit the completed work locally without pushing."
+policy:
+  allow_implicit_invocation: false
