@@ -38,7 +38,7 @@ with existing instructions rather than replacing them wholesale.
 | [document_dump/](document_dump/README.md) | Temporary inbox shared by the human and both agents. |
 | [outputs/](outputs/README.md) | Your local exercise outputs and permanent document archives. |
 | [index.html](index.html) | Opens the presentation when the pack is served as a website. |
-| [LICENSE](LICENSE) | CC BY 4.0 for the teaching material, with the exceptions it lists. |
+| [LICENSE](LICENSE) | CC BY 4.0 for the teaching material; exceptions are listed under Licence below. |
 
 ## Shared workflow for Claude Code and Codex
 
@@ -107,6 +107,8 @@ It contains model decisions, not human ground truth.
 
 ## Licence
 
-The teaching material is licensed under [CC BY 4.0](LICENSE): you may share and adapt it with
-credit to Arnaud Dyèvre. The Wikipedia excerpts in exercise 4 remain under CC BY-SA 4.0, and
-product names and logos belong to their owners.
+© 2026 Arnaud Dyèvre. The teaching material is licensed under [CC BY 4.0](LICENSE): you may share
+and adapt it, including commercially, with credit to Arnaud Dyèvre. Two exceptions: the Wikipedia
+excerpts in exercise 4 remain under CC BY-SA 4.0 (see its [data README](exercises/04-wikipedia-classification/data/README.md)),
+and product names and logos (Anthropic, Claude, OpenAI, ChatGPT, Codex, Gmail, Slack, Zoom, X,
+LinkedIn and others) are trademarks of their owners, shown for identification only.
