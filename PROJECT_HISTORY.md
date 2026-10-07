@@ -17,4 +17,6 @@ Do not copy private documents here; refer to their paths instead.
 
 ## Entries
 
+- **2026-10-07 — Codex, presentation update:** Added OpenAI’s 6 October maths release to the timeline: 722 manuscripts in 372 related result families, with source links and the ongoing-verification qualification. Kept the 80 arXiv monthly counts unchanged. Checked the chart layout, milestone buttons and source data, and passed the complete student-pack checks. The revised presentation is published through the existing GitHub Pages site; no exercise content changed. Next: review the October milestone in the presentation.
+
 - **2026-10-02 — Workshop pack:** Pack supplied. No student work yet.
